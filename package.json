@@ -1,0 +1,21 @@
+{
+  "name": "whatapps",
+  "version": "1.0.0",
+  "description": "Whatapps Bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "Whatapps",
+    "Bot"
+  ],
+  "author": "Norman K K Kong",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "jsonwebtoken": "^8.5.0",
+    "twilio": "^3.29.1"
+  }
+}
