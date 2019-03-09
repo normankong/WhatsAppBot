@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const authClient = require("./lib/auth_helper.js")();
 const twilioClient = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_ACCOUNT_AUTH);
-
+const DELIMIATOR = '```';
 /**
  * Generate JWT Token
  */
@@ -100,18 +100,18 @@ function processNotify(opts) {
             let message = "";
             if (object.type == "ICT") {
                 let bank = object.bank;
-                let payer = object.payer;
+                let payer = DELIMIATOR + object.payer + DELIMIATOR;
                 let creditAmount = object.creditAmount;
                 let creditAccount = object.creditAccount;
-                message = `親 : ${payer} 使用轉數快過 ${creditAmount} 錢給你的 ${bank} 金額，入賬戶口為 ``````${creditAccount}```````;
+                message = `親 : ${payer} 使用轉數快過 ${creditAmount} 錢給你的 ${bank} 金額，入賬戶口為 ${creditAccount}`;
             }
 
             if (object.type == "OCT") {
                 let bank = object.bank;
-                let payee = object.payee;
+                let payee = DELIMIATOR + object.payee + DELIMIATOR;
                 let debitAmount = object.debitAmount;
                 let debitAccount = object.debitAccount;
-                message = `親 : 你剛使用轉數快過 ${debitAmount} 給 ${payee}, 由 ${bank} 戶口 ``````${debitAccount} 扣除``````` ;
+                message = `親 : 你剛使用轉數快過 ${debitAmount} 給 ${payee}, 由 ${bank} 戶口 ${debitAccount} 扣除` ;
             }
 
             if (object.type == "STM") {
